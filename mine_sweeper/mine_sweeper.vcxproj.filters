@@ -21,15 +21,9 @@
     <ClCompile Include="mine_grid.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mine_machine.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mine_grid.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="mine_machine.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

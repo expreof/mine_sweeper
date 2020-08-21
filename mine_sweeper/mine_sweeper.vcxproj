@@ -143,11 +143,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mine_grid.cpp" />
-    <ClCompile Include="mine_machine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="mine_grid.h" />
-    <ClInclude Include="mine_machine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
