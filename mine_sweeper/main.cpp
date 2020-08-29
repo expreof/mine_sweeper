@@ -6,7 +6,7 @@ using namespace std;
 int main()
 {
 	mine_grid heaven(10, 10, 10);
-	
+	heaven.arrange_mine();	// ±ØĞë²¼ÖÃÀ×Çø
 	heaven.display();
 	auto tStart = chrono::steady_clock::now();
 	while (true)

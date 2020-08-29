@@ -4,7 +4,6 @@
 class mine_grid
 {
 public:
-	// to-do: 分离创建雷区和布雷
 	mine_grid(int width, int height, int mine_num);
 	mine_grid(const mine_grid&) = delete;
 	mine_grid(mine_grid&& rrv) noexcept;
@@ -23,6 +22,7 @@ public:
 	int surrounding_unopened_num(int x,int y);	// 某格周围未打开的格数
 	int surrounding_flaged_num(int x, int y);	// 某格周围已标记的格数
 public:
+	int arrange_mine();
 	int dig(int x, int y);		// 打开一格
 	int flag(int x, int y);		// 标记某格为雷
 	int deflag(int x, int y);	// 取消标记

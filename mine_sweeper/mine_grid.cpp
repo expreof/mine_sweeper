@@ -11,31 +11,6 @@ mine_grid::mine_grid(int w, int h, int mnum):width(w),height(h),mine_num(mnum)
 	num_area = new int[w * h]{};
 	open_area = new int[w * h]{};
 	flag_area = new int[w * h]{};
-	// 布雷
-	for (int i = 0; i != mnum; ++i)
-		mine_area[i] = 1;	// 1 代表有雷
-	// 打乱
-	std::random_device r;
-	std::uniform_int_distribution<unsigned> u;
-	std::default_random_engine e1(r());
-	using std::swap;
-	for (unsigned i = width*height - 1; i > 0; --i)
-	{
-		u.param(std::uniform_int_distribution<unsigned>::param_type{ 0,i });
-		auto index = u(e1);
-		swap(mine_area[i], mine_area[index]);
-	}
-	// 遍历雷区，标上某格周围的雷数
-	for (int y = 0; y != height; ++y)
-	{
-		for (int x = 0; x != width; ++x)
-		{
-			if (mine_area[x + y * width] == 1)	//当前格是雷直接跳过(还是标个0吧
-				num_area[x + y * width] = 0;
-			else
-				num_area[x + y * width] = surrounding_mine_num(x, y);
-		}
-	}
 }
 
 mine_grid::mine_grid(mine_grid&& rrv) noexcept
@@ -199,6 +174,35 @@ int mine_grid::surrounding_flaged_num(int x, int y)
 		}
 	}
 	return num;
+}
+
+int mine_grid::arrange_mine()
+{
+	for (int i = 0; i != m_num(); ++i)
+		mine_area[i] = 1;	// 1 代表有雷
+	// 打乱
+	std::random_device r;
+	std::uniform_int_distribution<unsigned> u;
+	std::default_random_engine e1(r());
+	using std::swap;
+	for (unsigned i = width * height - 1; i > 0; --i)
+	{
+		u.param(std::uniform_int_distribution<unsigned>::param_type{ 0,i });
+		auto index = u(e1);
+		swap(mine_area[i], mine_area[index]);
+	}
+	// 遍历雷区，标上某格周围的雷数
+	for (int y = 0; y != height; ++y)
+	{
+		for (int x = 0; x != width; ++x)
+		{
+			if (mine_area[x + y * width] == 1)
+				num_area[x + y * width] = 0;	//当前格是雷直接跳过(还是标个0吧
+			else
+				num_area[x + y * width] = surrounding_mine_num(x, y);
+		}
+	}
+	return 1;
 }
 
 int mine_grid::dig(int x, int y)
